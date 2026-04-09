@@ -1,6 +1,8 @@
 #include "MQTTUplink.h"
 #include "MQTTCaCerts.h"
-#include "WebPanelCert.h"
+#if defined(WITH_WEB_PANEL) && WITH_WEB_PANEL
+  #include "WebPanelCert.h"
+#endif
 
 #ifdef WITH_MQTT_UPLINK
 
@@ -75,6 +77,7 @@ void freeScratchBuffer(void* ptr) {
   }
 }
 
+#if WITH_WEB_PANEL
 const char kWebPanelHtml[] PROGMEM = R"HTML(
 <!doctype html>
 <html>
@@ -418,6 +421,7 @@ const char kWebPanelHtml[] PROGMEM = R"HTML(
 </body>
 </html>
 )HTML";
+#endif
 
 const char* getWifiStateLabel(const MQTTPrefs& prefs, bool wifi_started) {
   if (prefs.wifi_ssid[0] == 0) {
@@ -447,10 +451,16 @@ MQTTUplink::MQTTUplink(mesh::RTCClock& rtc, mesh::LocalIdentity& identity)
     : _fs(nullptr), _rtc(&rtc), _identity(&identity), _running(false), _wifi_started(false), _sntp_started(false),
       _have_time_sync(false), _wifi_sta_started_at(0), _last_wifi_attempt(0), _last_status_publish(0), _last_status{},
       _node_name(nullptr),
-      _web_runner(nullptr), _web_server(nullptr) {
+      _web_runner(nullptr)
+#if WITH_WEB_PANEL
+      , _web_server(nullptr)
+#endif
+       {
   memset(_device_id, 0, sizeof(_device_id));
+#if WITH_WEB_PANEL
   memset(_web_token, 0, sizeof(_web_token));
   _web_route_context.self = this;
+#endif
   MQTTPrefsStore::setDefaults(_prefs);
   for (size_t i = 0; i < 3; ++i) {
     memset(&_brokers[i], 0, sizeof(_brokers[i]));
@@ -837,6 +847,7 @@ void MQTTUplink::handleMqttEvent(void* handler_args, esp_event_base_t, int32_t e
   }
 }
 
+#if WITH_WEB_PANEL
 esp_err_t MQTTUplink::handleWebIndex(httpd_req_t* req) {
   auto* ctx = static_cast<WebRouteContext*>(req->user_ctx);
   if (ctx == nullptr || ctx->self == nullptr) {
@@ -846,7 +857,9 @@ esp_err_t MQTTUplink::handleWebIndex(httpd_req_t* req) {
   httpd_resp_set_hdr(req, "Cache-Control", "no-store");
   return httpd_resp_send(req, kWebPanelHtml, HTTPD_RESP_USE_STRLEN);
 }
+#endif
 
+#if WITH_WEB_PANEL
 esp_err_t MQTTUplink::handleWebLogin(httpd_req_t* req) {
   auto* ctx = static_cast<WebRouteContext*>(req->user_ctx);
   if (ctx == nullptr || ctx->self == nullptr || ctx->self->_web_runner == nullptr) {
@@ -876,7 +889,9 @@ esp_err_t MQTTUplink::handleWebLogin(httpd_req_t* req) {
   httpd_resp_set_hdr(req, "Cache-Control", "no-store");
   return httpd_resp_sendstr(req, ctx->self->_web_token);
 }
+#endif
 
+#if WITH_WEB_PANEL
 esp_err_t MQTTUplink::handleWebCommand(httpd_req_t* req) {
   auto* ctx = static_cast<WebRouteContext*>(req->user_ctx);
   if (ctx == nullptr || ctx->self == nullptr || ctx->self->_web_runner == nullptr) {
@@ -909,7 +924,9 @@ esp_err_t MQTTUplink::handleWebCommand(httpd_req_t* req) {
   freeScratchBuffer(reply);
   return rc;
 }
+#endif
 
+#if WITH_WEB_PANEL
 bool MQTTUplink::readRequestBody(httpd_req_t* req, char* buffer, size_t buffer_size) const {
   if (req == nullptr || buffer == nullptr || buffer_size == 0 || req->content_len <= 0 ||
       req->content_len >= static_cast<int>(buffer_size)) {
@@ -998,6 +1015,10 @@ void MQTTUplink::ensureWebServer() {
   }
   startWebServer();
 }
+#else
+void MQTTUplink::ensureWebServer() { }
+void MQTTUplink::stopWebServer() { }
+#endif
 
 void MQTTUplink::ensureWifi() {
   if (_prefs.wifi_ssid[0] == 0) {
@@ -1178,7 +1199,9 @@ void MQTTUplink::begin(FILESYSTEM* fs) {
   _fs = fs;
   MQTTPrefsStore::load(_fs, _prefs);
   refreshIdentityStrings();
+#if WITH_WEB_PANEL
   refreshWebToken();
+#endif
   _running = true;
   _last_status_publish = millis();
   MQTT_LOG("begin iata=%s enabled_mask=0x%02X wifi_ssid=%s", _prefs.iata, _prefs.enabled_mask, _prefs.wifi_ssid);
@@ -1301,6 +1324,7 @@ void MQTTUplink::formatStatusReply(char* reply, size_t reply_size) const {
 }
 
 void MQTTUplink::formatWebStatusReply(char* reply, size_t reply_size) const {
+#if WITH_WEB_PANEL
   if (_web_runner == nullptr) {
     snprintf(reply, reply_size, "> web:off");
     return;
@@ -1318,6 +1342,10 @@ void MQTTUplink::formatWebStatusReply(char* reply, size_t reply_size) const {
 
   snprintf(reply, reply_size, "> web:up url:https://%s/ auth:%s", WiFi.localIP().toString().c_str(),
            _web_token[0] ? "unlocked" : "locked");
+#else
+  (void)reply_size;
+  snprintf(reply, reply_size, "> web:unsupported");
+#endif
 }
 
 bool MQTTUplink::setEndpointEnabled(uint8_t bit, bool enabled) {
@@ -1355,6 +1383,7 @@ bool MQTTUplink::setTxEnabled(bool enabled) {
 }
 
 bool MQTTUplink::setWebEnabled(bool enabled) {
+#if WITH_WEB_PANEL
   _prefs.web_enabled = enabled ? 1 : 0;
   bool ok = savePrefs();
   if (_prefs.web_enabled == 0) {
@@ -1363,6 +1392,10 @@ bool MQTTUplink::setWebEnabled(bool enabled) {
     ensureWebServer();
   }
   return ok;
+#else
+  (void)enabled;
+  return false;
+#endif
 }
 
 bool MQTTUplink::setIata(const char* iata) {

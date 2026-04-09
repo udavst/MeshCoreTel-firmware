@@ -11,7 +11,12 @@
 
 #if defined(ESP_PLATFORM)
 #include <WiFi.h>
-#include <esp_https_server.h>
+#if !defined(WITH_WEB_PANEL)
+  #define WITH_WEB_PANEL 1
+#endif
+#if WITH_WEB_PANEL
+  #include <esp_https_server.h>
+#endif
 #include <mqtt_client.h>
 #endif
 
@@ -105,9 +110,11 @@ private:
     char offline_payload[256];
   };
 
+#if WITH_WEB_PANEL
   struct WebRouteContext {
     MQTTUplink* self;
   };
+#endif
 #endif
 
   FILESYSTEM* _fs;
@@ -133,20 +140,26 @@ private:
   static const BrokerSpec kBrokerSpecs[3];
 
   BrokerState _brokers[3];
+#if WITH_WEB_PANEL
   httpd_handle_t _web_server;
   char _web_token[33];
   WebRouteContext _web_route_context;
+#endif
 
   static void handleMqttEvent(void* handler_args, esp_event_base_t base, int32_t event_id, void* event_data);
+#if WITH_WEB_PANEL
   static esp_err_t handleWebIndex(httpd_req_t* req);
   static esp_err_t handleWebLogin(httpd_req_t* req);
   static esp_err_t handleWebCommand(httpd_req_t* req);
+#endif
   void ensureWebServer();
   void stopWebServer();
   bool startWebServer();
+#if WITH_WEB_PANEL
   bool isWebAuthorized(httpd_req_t* req) const;
   bool readRequestBody(httpd_req_t* req, char* buffer, size_t buffer_size) const;
   void refreshWebToken();
+#endif
   void ensureWifi();
   void updateTimeSync();
   bool hasEnabledBroker() const;
