@@ -777,7 +777,7 @@ const char kWebPanelHtml[] PROGMEM = R"HTML(
         <h3>Radio</h3>
         ${renderMeter("RSSI", (radio.last_rssi ?? "--") + " dBm", rssiPct, "signal strength", false)}
         ${renderMeter("SNR", Number.isFinite(radio.last_snr) ? radio.last_snr.toFixed(1) + " dB" : "--", snrPct, "link quality", false)}
-        ${renderMeter("Noise Floor", (radio.noise_floor ?? "--") + " dBm", noisePct, "ambient RF", false)}
+        ${renderMeter("Noise Floor", (radio.noise_floor ?? "--") + " dBm", noisePct, "ambient RF", true)}
         <div class="metric-grid">
           ${renderMetric("TX Air", String(radio.tx_air_secs ?? 0) + " s")}
           ${renderMetric("RX Air", String(radio.rx_air_secs ?? 0) + " s")}
