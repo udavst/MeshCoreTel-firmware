@@ -750,6 +750,7 @@
 <li><code>set wifi.ssid &lt;your-ssid&gt;</code></li>
 <li><code>set wifi.pwd &lt;your-password&gt;</code></li>
 <li><code>set mqtt.iata &lt;code&gt;</code></li>
+<li><code>set mqtt.status on</code></li>
 </ul>
 <h2 id="optional-settings">Optional Settings<a class="headerlink" href="#optional-settings" title="Permanent link">&para;</a></h2>
 <p>If you were previously using owner metadata, also set:</p>
@@ -772,6 +773,7 @@
 <ul>
 <li><code>get wifi.status</code></li>
 <li><code>get mqtt.status</code></li>
+<li><code>get mqtt.statuscfg</code></li>
 </ul>
 <h2 id="validate-in-the-web-console">Validate In The Web Console<a class="headerlink" href="#validate-in-the-web-console" title="Permanent link">&para;</a></h2>
 <p>If the web panel is enabled on your board, you can also verify through the local HTTPS admin page.</p>
@@ -807,11 +809,11 @@
 <ol>
 <li>Flash the new EastMesh firmware without erasing.</li>
 <li>Open the serial CLI or companion app.</li>
-<li>Set <code>wifi.ssid</code>, <code>wifi.pwd</code>, and <code>mqtt.iata</code>.</li>
+<li>Set <code>wifi.ssid</code>, <code>wifi.pwd</code>, <code>mqtt.iata</code>, and <code>mqtt.status on</code>.</li>
 <li>Optionally set <code>mqtt.owner</code> and <code>mqtt.email</code>.</li>
 <li>If you previously had TX publishing disabled, set <code>mqtt.tx off</code>.</li>
 <li>Reboot the repeater.</li>
-<li>Verify with <code>get wifi.status</code> and <code>get mqtt.status</code>.</li>
+<li>Verify with <code>get wifi.status</code>, <code>get mqtt.status</code>, and <code>get mqtt.statuscfg</code>.</li>
 <li>Optionally confirm local web access with <code>set web on</code>, <code>get web.status</code>, and <code>https://&lt;IP_ADDRESS&gt;/</code>.</li>
 </ol>
 <h2 id="related-docs">Related Docs<a class="headerlink" href="#related-docs" title="Permanent link">&para;</a></h2>

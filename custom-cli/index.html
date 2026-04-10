@@ -743,6 +743,8 @@
 <ul>
 <li><code>get mqtt.status</code></li>
 <li>shows WiFi, NTP, IATA, endpoint status, and TX state</li>
+<li><code>get mqtt.statuscfg</code></li>
+<li>shows whether periodic status messages are enabled</li>
 <li><code>get mqtt.iata</code></li>
 <li>shows the IATA/location code used in MQTT topics</li>
 <li><code>set mqtt.iata &lt;code&gt;</code></li>
@@ -773,6 +775,8 @@
 <li>shows whether raw packet payloads are published</li>
 <li><code>set mqtt.raw on|off</code></li>
 <li>enables or disables the separate <code>raw</code> MQTT topic</li>
+<li><code>set mqtt.status on|off</code></li>
+<li>enables or disables periodic MQTT status publishing</li>
 <li><code>get mqtt.tx</code></li>
 <li>shows whether TX packets are included</li>
 <li><code>set mqtt.tx on|off</code></li>
@@ -854,6 +858,8 @@
 <li><code>set mqtt.packets on|off</code></li>
 <li><code>get mqtt.raw</code></li>
 <li><code>set mqtt.raw on|off</code></li>
+<li><code>get mqtt.statuscfg</code></li>
+<li><code>set mqtt.status on|off</code></li>
 <li><code>get mqtt.tx</code></li>
 <li><code>set mqtt.tx on|off</code></li>
 <li><code>get mqtt.eastmesh-au</code></li>
