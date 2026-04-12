@@ -435,6 +435,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#performance-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#actions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -611,6 +622,17 @@
     <span class="md-ellipsis">
       
         The panel opens but login fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mqtt-becomes-unstable-when-i-log-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MQTT becomes unstable when I log in
       
     </span>
   </a>
@@ -813,6 +835,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#performance-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#actions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -996,6 +1029,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#mqtt-becomes-unstable-when-i-log-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MQTT becomes unstable when I log in
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#a-command-says-it-is-not-allowlisted" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1070,6 +1114,12 @@
 <li>editable MQTT settings</li>
 <li>a stats dashboard with Wi-Fi, core, radio, memory, and packet views</li>
 </ul>
+<p>Operational guidance:</p>
+<ul>
+<li>use it for initial setup, occasional configuration changes, and troubleshooting</li>
+<li>when you are finished, prefer <code>set web off</code> on MQTT repeaters that need maximum headroom</li>
+<li>this leaves more internal heap available for MQTT/WSS activity, especially on dual-broker setups</li>
+</ul>
 <h2 id="screenshot-overview">Screenshot Overview<a class="headerlink" href="#screenshot-overview" title="Permanent link">&para;</a></h2>
 <p>The layout below reflects the current panel structure for the repeater web UI.</p>
 <p><img alt="Repeater web panel overview" src=".././_assets/repeater_web_panel_overview.png" /></p>
@@ -1109,6 +1159,15 @@
 <li>the panel only exposes an allowlisted subset of CLI commands</li>
 </ul>
 <p>This is intended for local admin use on a trusted network, not for open internet exposure.</p>
+<h2 id="performance-notes">Performance Notes<a class="headerlink" href="#performance-notes" title="Permanent link">&para;</a></h2>
+<p>The panel is designed to load more gently than earlier versions. On login it now fetches sections in sequence instead of requesting one large bootstrap payload up front.</p>
+<p>Even with that change, the panel still uses HTTPS and internal heap. On boards running one or two WSS MQTT brokers, opening the panel reduces MQTT headroom while the session is active.</p>
+<p>Recommended practice for repeater deployments:</p>
+<ul>
+<li>enable the panel for initial configuration</li>
+<li>use it again for occasional checks or troubleshooting</li>
+<li>disable it with <code>set web off</code> when finished so MQTT has the most headroom available</li>
+</ul>
 <h2 id="actions">Actions<a class="headerlink" href="#actions" title="Permanent link">&para;</a></h2>
 <p>The Actions panel gives you the most common operational controls:</p>
 <ul>
@@ -1236,6 +1295,15 @@
 </ul>
 <h3 id="the-panel-opens-but-login-fails">The panel opens but login fails<a class="headerlink" href="#the-panel-opens-but-login-fails" title="Permanent link">&para;</a></h3>
 <p>Use the repeater admin password, not the guest password.</p>
+<h3 id="mqtt-becomes-unstable-when-i-log-in">MQTT becomes unstable when I log in<a class="headerlink" href="#mqtt-becomes-unstable-when-i-log-in" title="Permanent link">&para;</a></h3>
+<p>The web panel now loads settings section-by-section to reduce startup pressure, but HTTPS still consumes internal heap.</p>
+<p>Check:</p>
+<ul>
+<li>whether one or two MQTT brokers are enabled</li>
+<li><code>memory</code> before and after login</li>
+<li>whether stability improves after <code>set web off</code></li>
+</ul>
+<p>For fixed installations where MQTT uptime matters more than browser access, use the panel briefly and then disable it again.</p>
 <h3 id="a-command-says-it-is-not-allowlisted">A command says it is not allowlisted<a class="headerlink" href="#a-command-says-it-is-not-allowlisted" title="Permanent link">&para;</a></h3>
 <p>The panel intentionally limits what can be run from the browser. Use the serial CLI for commands outside the web allowlist. <code>clock</code> is included, but most maintenance and debug commands are still serial-only.</p>
 <h3 id="stats-or-settings-do-not-refresh">Stats or settings do not refresh<a class="headerlink" href="#stats-or-settings-do-not-refresh" title="Permanent link">&para;</a></h3>
