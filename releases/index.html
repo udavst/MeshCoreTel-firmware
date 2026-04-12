@@ -370,6 +370,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#beginner-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beginner Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Beginner Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repeater-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repeater Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Console
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#repeater-mqtt-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -592,6 +631,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#beginner-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beginner Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Beginner Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repeater-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repeater Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Console
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#repeater-mqtt-notes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -677,14 +755,62 @@
 <li>Reboot the device and complete any post-flash setup such as WiFi, MQTT, or radio settings.</li>
 </ol>
 <h2 id="recommended-flasher">Recommended Flasher<a class="headerlink" href="#recommended-flasher" title="Permanent link">&para;</a></h2>
-<p>For custom firmware files, use:</p>
+<p>The recommended flasher is:</p>
 <ul>
-<li><a href="https://flasher.meshcore.io/">https://flasher.meshcore.io/</a></li>
+<li><a href="https://flasher.eastmesh.au/">https://flasher.eastmesh.au/</a></li>
+</ul>
+<p>It includes native support for:</p>
+<ul>
+<li><code>companion_radio_wifi</code> firmware</li>
+<li><code>repeater_mqtt</code> firmware</li>
+<li>custom firmware files</li>
 </ul>
 <p>Recommended usage:</p>
 <ul>
 <li>use the normal <code>.bin</code> there when you are updating an existing device</li>
 <li>use the <code>-merged.bin</code> there after an erase when you want a clean flash</li>
+</ul>
+<h2 id="beginner-setup">Beginner Setup<a class="headerlink" href="#beginner-setup" title="Permanent link">&para;</a></h2>
+<p>If this is your first time flashing EastMesh firmware, the easiest path is:</p>
+<ol>
+<li>Open <a href="https://flasher.eastmesh.au/">https://flasher.eastmesh.au/</a>.</li>
+<li>Select the firmware type you want:</li>
+<li><code>Companion WiFi</code></li>
+<li><code>Repeater MQTT</code></li>
+<li>or <code>Custom</code></li>
+<li>Flash the correct firmware for your board.</li>
+<li>Use the built-in setup tools in the flasher site to finish first-time configuration.</li>
+</ol>
+<p>The flasher site includes two especially useful actions after flashing:</p>
+<ul>
+<li><code>Repeater Setup</code></li>
+<li><code>Console</code></li>
+</ul>
+<h3 id="repeater-setup">Repeater Setup<a class="headerlink" href="#repeater-setup" title="Permanent link">&para;</a></h3>
+<p><code>Repeater Setup</code> is the guided first-time repeater flow.</p>
+<p>It is the traditional way to configure a repeater after flashing, including:</p>
+<ul>
+<li>device name</li>
+<li>latitude and longitude</li>
+<li>admin and guest passwords</li>
+<li>radio settings, including preset selection</li>
+<li>advert interval</li>
+<li>flood advert interval</li>
+<li>flood max</li>
+<li>some advanced repeater settings</li>
+</ul>
+<p>As of <code>v1.2.1</code>, the local repeater web panel also includes the same common repeater settings, so many users can continue day-to-day configuration there after initial setup.</p>
+<h3 id="console">Console<a class="headerlink" href="#console" title="Permanent link">&para;</a></h3>
+<p><code>Console</code> is the raw CLI interface.</p>
+<p>It is especially useful, and often required, for the initial Wi-Fi setup on both firmware tracks:</p>
+<ul>
+<li><code>set wifi.ssid &lt;your-ssid&gt;</code></li>
+<li><code>set wifi.pwd &lt;your-password&gt;</code></li>
+</ul>
+<p>This applies to:</p>
+<ul>
+<li><code>companion_radio_wifi</code></li>
+<li><code>repeater_mqtt</code></li>
 </ul>
 <h2 id="repeater-mqtt-notes">Repeater MQTT Notes<a class="headerlink" href="#repeater-mqtt-notes" title="Permanent link">&para;</a></h2>
 <p><code>repeater_mqtt</code> builds include the EastMesh MQTT additions. Depending on the board, they may also include the local web panel.</p>
