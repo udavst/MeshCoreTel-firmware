@@ -337,6 +337,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#additional-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Signals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#repeater_mqtt-boards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -575,6 +586,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#additional-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Signals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#repeater_mqtt-boards" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -656,11 +678,11 @@
 <li><code>MCU</code> shows the chip family only. Actual runtime clock can vary by env and board configuration.</li>
 <li><code>RAM</code> is the MCU's built-in RAM.</li>
 <li><code>PSRAM</code> is extra memory on some boards. More PSRAM usually means more headroom for UI, MQTT, and future features.</li>
+<li><code>GPS</code> uses <code>✅</code> when present and is blank when absent.</li>
 </ul>
-<p>If a board enables PSRAM but the repo does not declare the exact size, it is shown as <code>Yes (size not declared)</code>.</p>
 <h2 id="start-here">Start Here<a class="headerlink" href="#start-here" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Pick an <code>ESP32-S3</code> board with <code>16MB</code> flash and PSRAM if you want the most headroom for MQTT plus UI: <code>heltec_v4_tft</code>, <code>heltec_v4</code>, <code>Station_G2</code>, <code>T_Beam_S3_Supreme_SX1262</code>.</li>
+<li>Pick an <code>ESP32-S3</code> board with <code>16MB</code> flash and PSRAM if you want strong overall headroom for MQTT plus UI: <code>heltec_v4_tft</code>, <code>heltec_v4</code>, <code>Station_G2</code>, <code>LilyGo_TBeam_1W</code>.</li>
 <li>Pick a TFT board if this will be used as a human-facing companion or field node: <code>heltec_v4_tft</code>, <code>heltec_tracker_v2</code>, <code>LilyGo_TDeck</code>, <code>Heltec_T190</code>.</li>
 <li>Pick e-paper if you want a status screen with lower idle draw and less frequent refresh: <code>Heltec_E213</code>, <code>Heltec_E290</code>, <code>Heltec_Wireless_Paper</code>, <code>ThinkNode_M5</code>.</li>
 <li>Pick a headless board if this is mainly a fixed MQTT gateway and screen space is not useful: <code>Xiao_C3</code>, <code>RAK_3112</code>, <code>Tenstar_C3</code>, <code>Heltec_ct62</code>, <code>Generic_E22</code>.</li>
@@ -668,6 +690,308 @@
 <li>Pick a GPS-capable board if location-aware/mobile use matters: the T-Beam family, <code>heltec_tracker_v2</code>, <code>Heltec_v3</code>, <code>heltec_v4</code>, <code>Station_G2</code>, <code>ThinkNode_M5</code>.</li>
 <li>If you want the most conservative, older radio family choices, the <code>SX1276</code> boards are <code>LilyGo_TLora_V2_1_1_6</code>, <code>Tbeam_SX1276</code>, and <code>Heltec_v2</code>.</li>
 </ul>
+<h2 id="additional-signals">Additional Signals<a class="headerlink" href="#additional-signals" title="Permanent link">&para;</a></h2>
+<p>If you are deciding between otherwise similar boards, these target-level settings often matter more than flash alone.</p>
+<ul>
+<li><code>CPU cfg</code> is the runtime clock MeshCore sets for that target. <code>default</code> means MeshCore does not override the board's default clock.</li>
+<li><code>TX cfg</code> is MeshCore's configured <code>LORA_TX_POWER</code>, not guaranteed antenna output. Boards with a PA or RF front-end may radiate much more than the configured value suggests.</li>
+<li><code>Power</code> is how the target exposes power in the repo: <code>ADC batt</code>, <code>PMU</code>, <code>custom 2S</code>, <code>fixed/ext</code>, or <code>none</code>.</li>
+<li><code>Extras</code> lists notable RF or peripheral extras exposed by the target, such as <code>PA/FEM</code>, <code>RF switch</code>, <code>BME280</code>, <code>NeoPixel</code>, or <code>ext ant</code>.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>CPU cfg</th>
+<th>TX cfg</th>
+<th>Power</th>
+<th>Extras</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ebyte_EoRa-S3</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>Generic_E22_sx1262</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td>RF switch</td>
+</tr>
+<tr>
+<td>Generic_E22_sx1268</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td>RF switch</td>
+</tr>
+<tr>
+<td>Heltec_ct62</td>
+<td>80 MHz</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>Heltec_E213</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>Heltec_E290</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>Heltec_T190</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>heltec_tracker_v2</td>
+<td>160 MHz</td>
+<td>9 dBm cfg*</td>
+<td>ADC batt</td>
+<td>PA/FEM</td>
+</tr>
+<tr>
+<td>Heltec_v2</td>
+<td>default</td>
+<td>20 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>Heltec_v3</td>
+<td>80 MHz</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>heltec_v4</td>
+<td>80 MHz</td>
+<td>10 dBm cfg*</td>
+<td>ADC batt</td>
+<td>PA/FEM</td>
+</tr>
+<tr>
+<td>heltec_v4_tft</td>
+<td>80 MHz</td>
+<td>10 dBm cfg*</td>
+<td>ADC batt</td>
+<td>PA/FEM</td>
+</tr>
+<tr>
+<td>Heltec_Wireless_Paper</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>Heltec_Wireless_Tracker</td>
+<td>80 MHz</td>
+<td>22 dBm cfg</td>
+<td>none</td>
+<td></td>
+</tr>
+<tr>
+<td>Heltec_WSL3</td>
+<td>80 MHz</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>LilyGo_T3S3_sx1262</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>LilyGo_T3S3_sx1276</td>
+<td>default</td>
+<td>20 dBm cfg</td>
+<td>ADC batt</td>
+<td>RF switch</td>
+</tr>
+<tr>
+<td>LilyGo_TBeam_1W</td>
+<td>default</td>
+<td>22 dBm cfg*</td>
+<td>custom 2S</td>
+<td>PA/FEM</td>
+</tr>
+<tr>
+<td>LilyGo_TDeck</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>LilyGo_Tlora_C6</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>none</td>
+<td>RF switch</td>
+</tr>
+<tr>
+<td>LilyGo_TLora_V2_1_1_6</td>
+<td>default</td>
+<td>20 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>M5Stack_Unit_C6L</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>none</td>
+<td>RF switch</td>
+</tr>
+<tr>
+<td>Meshadventurer_sx1262</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td>RF switch</td>
+</tr>
+<tr>
+<td>Meshadventurer_sx1268</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td>RF switch</td>
+</tr>
+<tr>
+<td>Meshimi</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>none</td>
+<td>ext ant</td>
+</tr>
+<tr>
+<td>nibble_screen_connect</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>none</td>
+<td>NeoPixel</td>
+</tr>
+<tr>
+<td>RAK_3112</td>
+<td>80 MHz</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>Station_G2</td>
+<td>default</td>
+<td>7 dBm cfg*</td>
+<td>fixed/ext</td>
+<td>PA/FEM</td>
+</tr>
+<tr>
+<td>Station_G2_logging</td>
+<td>default</td>
+<td>7 dBm cfg*</td>
+<td>fixed/ext</td>
+<td>PA/FEM</td>
+</tr>
+<tr>
+<td>T_Beam_S3_Supreme_SX1262</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>PMU</td>
+<td>BME280</td>
+</tr>
+<tr>
+<td>Tbeam_SX1262</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>PMU</td>
+<td></td>
+</tr>
+<tr>
+<td>Tbeam_SX1276</td>
+<td>default</td>
+<td>20 dBm cfg</td>
+<td>PMU</td>
+<td></td>
+</tr>
+<tr>
+<td>Tenstar_C3_sx1262</td>
+<td>80 MHz</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>Tenstar_C3_sx1268</td>
+<td>80 MHz</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>ThinkNode_M2</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>ThinkNode_M5</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>WHY2025_badge</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>none</td>
+<td></td>
+</tr>
+<tr>
+<td>Xiao_C3</td>
+<td>80 MHz</td>
+<td>22 dBm cfg</td>
+<td>ADC batt</td>
+<td></td>
+</tr>
+<tr>
+<td>Xiao_C6</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>none</td>
+<td>RF switch</td>
+</tr>
+<tr>
+<td>Xiao_S3_WIO</td>
+<td>default</td>
+<td>22 dBm cfg</td>
+<td>none</td>
+<td>RF switch</td>
+</tr>
+</tbody>
+</table>
+<p>* These targets use a PA or RF front-end, so effective output can be much higher than the configured <code>LORA_TX_POWER</code>.</p>
 <h2 id="repeater_mqtt-boards"><code>repeater_mqtt</code> Boards<a class="headerlink" href="#repeater_mqtt-boards" title="Permanent link">&para;</a></h2>
 <p>This table includes all repeater MQTT targets currently defined in <code>variants/eastmesh_mqtt/platformio.ini</code>.</p>
 <table>
@@ -681,7 +1005,6 @@
 <th>LoRa</th>
 <th>Display</th>
 <th>GPS</th>
-<th>Notes</th>
 </tr>
 </thead>
 <tbody>
@@ -690,11 +1013,10 @@
 <td>ESP32S3</td>
 <td>512 KB</td>
 <td>2 MB</td>
-<td>4MB</td>
+<td>4 MB</td>
 <td>SX1262</td>
 <td>OLED (SSD1306)</td>
-<td>No</td>
-<td>more memory headroom</td>
+<td></td>
 </tr>
 <tr>
 <td>Generic_E22_sx1262</td>
@@ -704,8 +1026,7 @@
 <td>4 MB</td>
 <td>SX1262</td>
 <td>None</td>
-<td>No</td>
-<td>headless</td>
+<td></td>
 </tr>
 <tr>
 <td>Generic_E22_sx1268</td>
@@ -715,8 +1036,7 @@
 <td>4 MB</td>
 <td>SX1268</td>
 <td>None</td>
-<td>No</td>
-<td>headless</td>
+<td></td>
 </tr>
 <tr>
 <td>Heltec_ct62</td>
@@ -726,52 +1046,47 @@
 <td>4 MB</td>
 <td>SX1262</td>
 <td>None</td>
-<td>No</td>
-<td>headless</td>
+<td></td>
 </tr>
 <tr>
 <td>Heltec_E213</td>
 <td>ESP32S3</td>
 <td>512 KB</td>
 <td>8 MB</td>
-<td>16MB</td>
+<td>16 MB</td>
 <td>SX1262</td>
 <td>E-paper (2.13")</td>
-<td>No</td>
-<td>low-power display, more memory headroom</td>
+<td></td>
 </tr>
 <tr>
 <td>Heltec_E290</td>
 <td>ESP32S3</td>
 <td>512 KB</td>
 <td>8 MB</td>
-<td>16MB</td>
+<td>16 MB</td>
 <td>SX1262</td>
 <td>E-paper (2.9")</td>
-<td>No</td>
-<td>low-power display, more memory headroom</td>
+<td></td>
 </tr>
 <tr>
 <td>Heltec_T190</td>
 <td>ESP32S3</td>
 <td>512 KB</td>
 <td>8 MB</td>
-<td>16MB</td>
+<td>16 MB</td>
 <td>SX1262</td>
 <td>TFT (ST7789)</td>
-<td>No</td>
-<td>richer UI, more memory headroom</td>
+<td></td>
 </tr>
 <tr>
 <td>heltec_tracker_v2</td>
 <td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
-<td>8MB</td>
+<td>8 MB</td>
 <td>SX1262</td>
 <td>TFT (ST7735)</td>
-<td>Yes</td>
-<td>richer UI, GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Heltec_v2</td>
@@ -781,7 +1096,6 @@
 <td>8 MB</td>
 <td>SX1276</td>
 <td>OLED (SSD1306)</td>
-<td>No</td>
 <td></td>
 </tr>
 <tr>
@@ -792,30 +1106,27 @@
 <td>8 MB</td>
 <td>SX1262</td>
 <td>OLED (SSD1306)</td>
-<td>Yes</td>
-<td>GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>heltec_v4</td>
 <td>ESP32S3</td>
 <td>512 KB</td>
 <td>2 MB</td>
-<td>16MB</td>
+<td>16 MB</td>
 <td>SX1262</td>
 <td>OLED (SSD1306)</td>
-<td>Yes</td>
-<td>GPS, more memory headroom</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>heltec_v4_tft</td>
 <td>ESP32S3</td>
 <td>512 KB</td>
 <td>2 MB</td>
-<td>16MB</td>
+<td>16 MB</td>
 <td>SX1262</td>
 <td>TFT (ST7789)</td>
-<td>Yes</td>
-<td>richer UI, GPS, more memory headroom</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Heltec_Wireless_Paper</td>
@@ -825,8 +1136,7 @@
 <td>8 MB</td>
 <td>SX1262</td>
 <td>E-paper (2.13")</td>
-<td>No</td>
-<td>low-power display</td>
+<td></td>
 </tr>
 <tr>
 <td>Heltec_Wireless_Tracker</td>
@@ -836,8 +1146,7 @@
 <td>8 MB</td>
 <td>SX1262</td>
 <td>TFT (ST7735)</td>
-<td>Yes</td>
-<td>richer UI, GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Heltec_WSL3</td>
@@ -847,52 +1156,47 @@
 <td>8 MB</td>
 <td>SX1262</td>
 <td>None</td>
-<td>Yes</td>
-<td>headless, GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>LilyGo_T3S3_sx1262</td>
 <td>ESP32S3</td>
 <td>512 KB</td>
 <td>2 MB</td>
-<td>4MB</td>
+<td>4 MB</td>
 <td>SX1262</td>
 <td>OLED (SSD1306)</td>
-<td>No</td>
-<td>more memory headroom</td>
+<td></td>
 </tr>
 <tr>
 <td>LilyGo_T3S3_sx1276</td>
 <td>ESP32S3</td>
 <td>512 KB</td>
 <td>2 MB</td>
-<td>4MB</td>
+<td>4 MB</td>
 <td>SX1276</td>
 <td>OLED (SSD1306)</td>
-<td>No</td>
-<td>more memory headroom</td>
+<td></td>
 </tr>
 <tr>
 <td>LilyGo_TBeam_1W</td>
 <td>ESP32S3</td>
 <td>512 KB</td>
 <td>8 MB</td>
-<td>16MB</td>
+<td>16 MB</td>
 <td>SX1262</td>
 <td>OLED (SH1106)</td>
-<td>Yes</td>
-<td>GPS, more memory headroom</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>LilyGo_TDeck</td>
 <td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
-<td>16MB</td>
+<td>16 MB</td>
 <td>SX1262</td>
 <td>TFT (ST7789)</td>
-<td>Yes</td>
-<td>richer UI, GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>LilyGo_Tlora_C6</td>
@@ -902,8 +1206,7 @@
 <td>4 MB</td>
 <td>SX1262</td>
 <td>None</td>
-<td>No</td>
-<td>headless</td>
+<td></td>
 </tr>
 <tr>
 <td>LilyGo_TLora_V2_1_1_6</td>
@@ -913,8 +1216,7 @@
 <td>4 MB</td>
 <td>SX1276</td>
 <td>OLED (SSD1306)</td>
-<td>Yes</td>
-<td>GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>M5Stack_Unit_C6L</td>
@@ -924,8 +1226,7 @@
 <td>4 MB</td>
 <td>SX1262</td>
 <td>None</td>
-<td>Yes</td>
-<td>headless, GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Meshadventurer_sx1262</td>
@@ -935,8 +1236,7 @@
 <td>4 MB</td>
 <td>SX1262</td>
 <td>OLED (SSD1306)</td>
-<td>Yes</td>
-<td>GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Meshadventurer_sx1268</td>
@@ -946,8 +1246,7 @@
 <td>4 MB</td>
 <td>SX1268</td>
 <td>OLED (SSD1306)</td>
-<td>Yes</td>
-<td>GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Meshimi</td>
@@ -957,18 +1256,16 @@
 <td>4 MB</td>
 <td>SX1262</td>
 <td>None</td>
-<td>No</td>
-<td>headless</td>
+<td></td>
 </tr>
 <tr>
 <td>nibble_screen_connect</td>
 <td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
-<td>4MB</td>
+<td>4 MB</td>
 <td>SX1262</td>
 <td>OLED (SSD1306)</td>
-<td>No</td>
 <td></td>
 </tr>
 <tr>
@@ -979,41 +1276,37 @@
 <td>8 MB</td>
 <td>SX1262</td>
 <td>None</td>
-<td>Yes</td>
-<td>headless, GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Station_G2</td>
 <td>ESP32S3</td>
 <td>512 KB</td>
 <td>8 MB</td>
-<td>16MB</td>
+<td>16 MB</td>
 <td>SX1262</td>
 <td>OLED (SH1106)</td>
-<td>Yes</td>
-<td>GPS, more memory headroom</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Station_G2_logging</td>
 <td>ESP32S3</td>
 <td>512 KB</td>
 <td>8 MB</td>
-<td>16MB</td>
+<td>16 MB</td>
 <td>SX1262</td>
 <td>OLED (SH1106)</td>
-<td>Yes</td>
-<td>GPS, more memory headroom</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>T_Beam_S3_Supreme_SX1262</td>
 <td>ESP32S3</td>
 <td>512 KB</td>
 <td>8 MB</td>
-<td>8MB</td>
+<td>8 MB</td>
 <td>SX1262</td>
 <td>OLED (SH1106)</td>
-<td>Yes</td>
-<td>GPS, more memory headroom</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Tbeam_SX1262</td>
@@ -1023,8 +1316,7 @@
 <td>4 MB</td>
 <td>SX1262</td>
 <td>OLED (SSD1306)</td>
-<td>Yes</td>
-<td>GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Tbeam_SX1276</td>
@@ -1034,8 +1326,7 @@
 <td>4 MB</td>
 <td>SX1276</td>
 <td>OLED (SSD1306)</td>
-<td>Yes</td>
-<td>GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Tenstar_C3_sx1262</td>
@@ -1045,8 +1336,7 @@
 <td>4 MB</td>
 <td>SX1262</td>
 <td>None</td>
-<td>No</td>
-<td>headless</td>
+<td></td>
 </tr>
 <tr>
 <td>Tenstar_C3_sx1268</td>
@@ -1056,18 +1346,16 @@
 <td>4 MB</td>
 <td>SX1268</td>
 <td>None</td>
-<td>No</td>
-<td>headless</td>
+<td></td>
 </tr>
 <tr>
 <td>ThinkNode_M2</td>
 <td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
-<td>4MB</td>
+<td>4 MB</td>
 <td>SX1262</td>
 <td>OLED (SH1106)</td>
-<td>No</td>
 <td></td>
 </tr>
 <tr>
@@ -1075,11 +1363,10 @@
 <td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
-<td>4MB</td>
+<td>4 MB</td>
 <td>SX1262</td>
 <td>E-paper (GxEPD)</td>
-<td>Yes</td>
-<td>low-power display, GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>WHY2025_badge</td>
@@ -1089,8 +1376,7 @@
 <td>4 MB</td>
 <td>SX1262</td>
 <td>None</td>
-<td>No</td>
-<td>headless</td>
+<td></td>
 </tr>
 <tr>
 <td>Xiao_C3</td>
@@ -1100,8 +1386,7 @@
 <td>4 MB</td>
 <td>SX1262</td>
 <td>None</td>
-<td>Yes</td>
-<td>headless, GPS, web panel off</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Xiao_C6</td>
@@ -1111,8 +1396,7 @@
 <td>4 MB</td>
 <td>SX1262</td>
 <td>None</td>
-<td>No</td>
-<td>headless</td>
+<td></td>
 </tr>
 <tr>
 <td>Xiao_S3_WIO</td>
@@ -1122,8 +1406,7 @@
 <td>8 MB</td>
 <td>SX1262</td>
 <td>None</td>
-<td>Yes</td>
-<td>headless, GPS</td>
+<td>✅</td>
 </tr>
 </tbody>
 </table>
@@ -1141,7 +1424,6 @@
 <th>LoRa</th>
 <th>Display</th>
 <th>GPS</th>
-<th>Notes</th>
 </tr>
 </thead>
 <tbody>
@@ -1153,7 +1435,6 @@
 <td>8 MB</td>
 <td>SX1276</td>
 <td>OLED (SSD1306)</td>
-<td>No</td>
 <td></td>
 </tr>
 <tr>
@@ -1164,8 +1445,7 @@
 <td>8 MB</td>
 <td>SX1262</td>
 <td>OLED (SSD1306)</td>
-<td>Yes</td>
-<td>GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>heltec_tracker_v2</td>
@@ -1175,8 +1455,7 @@
 <td>8MB</td>
 <td>SX1262</td>
 <td>TFT (ST7735)</td>
-<td>Yes</td>
-<td>richer UI, GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>heltec_v4</td>
@@ -1186,8 +1465,7 @@
 <td>16MB</td>
 <td>SX1262</td>
 <td>OLED (SSD1306)</td>
-<td>Yes</td>
-<td>GPS, more memory headroom</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>heltec_v4_tft</td>
@@ -1197,8 +1475,7 @@
 <td>16MB</td>
 <td>SX1262</td>
 <td>TFT (ST7789)</td>
-<td>Yes</td>
-<td>richer UI, GPS, more memory headroom</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>LilyGo_TBeam_1W</td>
@@ -1208,8 +1485,7 @@
 <td>16MB</td>
 <td>SX1262</td>
 <td>OLED (SH1106)</td>
-<td>Yes</td>
-<td>GPS, more memory headroom</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>LilyGo_TLora_V2_1_1_6</td>
@@ -1219,8 +1495,7 @@
 <td>4 MB</td>
 <td>SX1276</td>
 <td>OLED (SSD1306)</td>
-<td>Yes</td>
-<td>GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>nibble_screen_connect</td>
@@ -1230,7 +1505,6 @@
 <td>4MB</td>
 <td>SX1262</td>
 <td>OLED (SSD1306)</td>
-<td>No</td>
 <td></td>
 </tr>
 <tr>
@@ -1241,8 +1515,7 @@
 <td>16MB</td>
 <td>SX1262</td>
 <td>OLED (SH1106)</td>
-<td>Yes</td>
-<td>GPS, more memory headroom</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>T_Beam_S3_Supreme_SX1262</td>
@@ -1252,8 +1525,7 @@
 <td>8MB</td>
 <td>SX1262</td>
 <td>OLED (SH1106)</td>
-<td>Yes</td>
-<td>GPS, more memory headroom</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>ThinkNode_M2</td>
@@ -1263,7 +1535,6 @@
 <td>4MB</td>
 <td>SX1262</td>
 <td>OLED (SH1106)</td>
-<td>No</td>
 <td></td>
 </tr>
 <tr>
@@ -1274,8 +1545,7 @@
 <td>4MB</td>
 <td>SX1262</td>
 <td>E-paper (GxEPD)</td>
-<td>Yes</td>
-<td>low-power display, GPS</td>
+<td>✅</td>
 </tr>
 </tbody>
 </table>
@@ -1291,7 +1561,6 @@
 <th>Flash</th>
 <th>LoRa</th>
 <th>GPS</th>
-<th>Notes</th>
 </tr>
 </thead>
 <tbody>
@@ -1302,8 +1571,7 @@
 <td>No</td>
 <td>8 MB</td>
 <td>SX1262</td>
-<td>Yes</td>
-<td>headless, GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>RAK_3112</td>
@@ -1312,8 +1580,7 @@
 <td>No</td>
 <td>8 MB</td>
 <td>SX1262</td>
-<td>Yes</td>
-<td>headless, GPS</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Xiao_C3</td>
@@ -1322,8 +1589,7 @@
 <td>No</td>
 <td>4 MB</td>
 <td>SX1262</td>
-<td>Yes</td>
-<td>smallest headless option, web panel off</td>
+<td>✅</td>
 </tr>
 <tr>
 <td>Xiao_S3_WIO</td>
@@ -1332,18 +1598,17 @@
 <td>No</td>
 <td>8 MB</td>
 <td>SX1262</td>
-<td>Yes</td>
-<td>headless, GPS</td>
+<td>✅</td>
 </tr>
 </tbody>
 </table>
 <h2 id="practical-picks">Practical Picks<a class="headerlink" href="#practical-picks" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Best all-round MQTT repeater with screen and memory headroom: <code>heltec_v4_repeater_mqtt</code>, <code>heltec_v4_tft_repeater_mqtt</code>, <code>T_Beam_S3_Supreme_SX1262_repeater_mqtt</code>, <code>Station_G2_repeater_mqtt</code>.</li>
+<li>Best all-round MQTT repeater with screen and overall headroom: <code>heltec_v4_repeater_mqtt</code>, <code>heltec_v4_tft_repeater_mqtt</code>, <code>Station_G2_repeater_mqtt</code>, <code>LilyGo_TBeam_1W_repeater_mqtt</code>.</li>
 <li>Best MQTT repeater if you want a simple headless install: <code>RAK_3112_repeater_mqtt</code>, <code>Tenstar_C3_sx1262_repeater_mqtt</code>, <code>Heltec_ct62_repeater_mqtt</code>, <code>Generic_E22_sx1262_repeater_mqtt</code>.</li>
 <li>Best low-power display MQTT builds: <code>Heltec_E213_repeater_mqtt</code>, <code>Heltec_E290_repeater_mqtt</code>, <code>Heltec_Wireless_Paper_repeater_mqtt</code>, <code>ThinkNode_M5_Repeater_mqtt</code>.</li>
 <li>Best companion choices if you want the richest local UI: <code>heltec_v4_tft_companion_radio_wifi</code> and <code>heltec_tracker_v2_companion_radio_wifi</code>.</li>
-<li>Best companion choices if you want maximum memory headroom: <code>T_Beam_S3_Supreme_SX1262_companion_radio_wifi</code>, <code>heltec_v4_companion_radio_wifi</code>, <code>heltec_v4_tft_companion_radio_wifi</code>, <code>Station_G2_companion_radio_wifi</code>.</li>
+<li>Best companion choices if you want maximum memory headroom: <code>T_Beam_S3_Supreme_SX1262_companion_radio_wifi</code>, <code>Station_G2_companion_radio_wifi</code>, <code>LilyGo_TBeam_1W_companion_radio_wifi</code>.</li>
 <li>Best companion choices if you are happy with an app-first, mostly headless setup: <code>Xiao_C3_companion_radio_wifi</code>, <code>RAK_3112_companion_radio_wifi</code>, <code>Xiao_S3_WIO_companion_radio_wifi</code>, <code>Station_G2_companion_radio_wifi</code>.</li>
 <li>Best companion choices if you prefer OLED over TFT: <code>T_Beam_S3_Supreme_SX1262_companion_radio_wifi</code>, <code>heltec_v4_companion_radio_wifi</code>, <code>LilyGo_TBeam_1W_companion_radio_wifi</code>.</li>
 </ul>
