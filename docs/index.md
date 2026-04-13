@@ -8,6 +8,7 @@ MeshCore-EastMesh keeps the upstream MeshCore firmware intact and adds an EastMe
 
 ## End User Guides
 
+- [Compare Boards](./boards.md)
 - [Download and Flash Releases](./releases.md)
 - [Migration From xJARiD/MeshCore](./migration.md)
 - [Use the Repeater Web Panel](./web-panel.md)

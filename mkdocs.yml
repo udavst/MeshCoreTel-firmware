@@ -36,6 +36,7 @@ extra_css:
 
 nav:
   - Home: index.md
+  - Boards: boards.md
   - Releases: releases.md
   - Migration: migration.md
   - Web Panel: web-panel.md
