@@ -653,6 +653,7 @@
 <p>The tables below are built from the repo's PlatformIO board metadata and variant build flags.</p>
 <ul>
 <li><code>Target</code> is the short board name used in this comparison page. Release filenames and local build commands still use the full env names such as <code>heltec_v4_repeater_mqtt</code>.</li>
+<li><code>MCU</code> shows the chip family only. Actual runtime clock can vary by env and board configuration.</li>
 <li><code>RAM</code> is the MCU's built-in RAM.</li>
 <li><code>PSRAM</code> is extra memory on some boards. More PSRAM usually means more headroom for UI, MQTT, and future features.</li>
 </ul>
@@ -673,7 +674,7 @@
 <thead>
 <tr>
 <th>Target</th>
-<th>CPU</th>
+<th>MCU</th>
 <th>RAM</th>
 <th>PSRAM</th>
 <th>Flash</th>
@@ -686,7 +687,7 @@
 <tbody>
 <tr>
 <td>Ebyte_EoRa-S3</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>Yes (size not declared)</td>
 <td>4MB</td>
@@ -697,7 +698,7 @@
 </tr>
 <tr>
 <td>Generic_E22_sx1262</td>
-<td>ESP32 / 240 MHz</td>
+<td>ESP32</td>
 <td>520 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -708,7 +709,7 @@
 </tr>
 <tr>
 <td>Generic_E22_sx1268</td>
-<td>ESP32 / 240 MHz</td>
+<td>ESP32</td>
 <td>520 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -719,7 +720,7 @@
 </tr>
 <tr>
 <td>Heltec_ct62</td>
-<td>ESP32C3 / 160 MHz</td>
+<td>ESP32C3</td>
 <td>400 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -730,7 +731,7 @@
 </tr>
 <tr>
 <td>Heltec_E213</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>8 MB</td>
 <td>16MB</td>
@@ -741,7 +742,7 @@
 </tr>
 <tr>
 <td>Heltec_E290</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>8 MB</td>
 <td>16MB</td>
@@ -752,7 +753,7 @@
 </tr>
 <tr>
 <td>Heltec_T190</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>8 MB</td>
 <td>16MB</td>
@@ -763,7 +764,7 @@
 </tr>
 <tr>
 <td>heltec_tracker_v2</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>8MB</td>
@@ -774,7 +775,7 @@
 </tr>
 <tr>
 <td>Heltec_v2</td>
-<td>ESP32 / 240 MHz</td>
+<td>ESP32</td>
 <td>520 KB</td>
 <td>No</td>
 <td>8 MB</td>
@@ -785,7 +786,7 @@
 </tr>
 <tr>
 <td>Heltec_v3</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>8 MB</td>
@@ -796,7 +797,7 @@
 </tr>
 <tr>
 <td>heltec_v4</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>2 MB</td>
 <td>16MB</td>
@@ -807,7 +808,7 @@
 </tr>
 <tr>
 <td>heltec_v4_tft</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>2 MB</td>
 <td>16MB</td>
@@ -818,7 +819,7 @@
 </tr>
 <tr>
 <td>Heltec_Wireless_Paper</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>8 MB</td>
@@ -829,7 +830,7 @@
 </tr>
 <tr>
 <td>Heltec_Wireless_Tracker</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>8 MB</td>
@@ -840,7 +841,7 @@
 </tr>
 <tr>
 <td>Heltec_WSL3</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>8 MB</td>
@@ -851,7 +852,7 @@
 </tr>
 <tr>
 <td>LilyGo_T3S3_sx1262</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>Yes (size not declared)</td>
 <td>4MB</td>
@@ -862,7 +863,7 @@
 </tr>
 <tr>
 <td>LilyGo_T3S3_sx1276</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>Yes (size not declared)</td>
 <td>4MB</td>
@@ -873,7 +874,7 @@
 </tr>
 <tr>
 <td>LilyGo_TBeam_1W</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>Yes (size not declared)</td>
 <td>16MB</td>
@@ -884,7 +885,7 @@
 </tr>
 <tr>
 <td>LilyGo_TDeck</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>16MB</td>
@@ -895,7 +896,7 @@
 </tr>
 <tr>
 <td>LilyGo_Tlora_C6</td>
-<td>ESP32C6 / 160 MHz</td>
+<td>ESP32C6</td>
 <td>512 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -906,7 +907,7 @@
 </tr>
 <tr>
 <td>LilyGo_TLora_V2_1_1_6</td>
-<td>ESP32 / 240 MHz</td>
+<td>ESP32</td>
 <td>520 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -917,7 +918,7 @@
 </tr>
 <tr>
 <td>M5Stack_Unit_C6L</td>
-<td>ESP32C6 / 160 MHz</td>
+<td>ESP32C6</td>
 <td>512 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -928,7 +929,7 @@
 </tr>
 <tr>
 <td>Meshadventurer_sx1262</td>
-<td>ESP32 / 240 MHz</td>
+<td>ESP32</td>
 <td>520 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -939,7 +940,7 @@
 </tr>
 <tr>
 <td>Meshadventurer_sx1268</td>
-<td>ESP32 / 240 MHz</td>
+<td>ESP32</td>
 <td>520 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -950,7 +951,7 @@
 </tr>
 <tr>
 <td>Meshimi</td>
-<td>ESP32C6 / 160 MHz</td>
+<td>ESP32C6</td>
 <td>512 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -961,7 +962,7 @@
 </tr>
 <tr>
 <td>nibble_screen_connect</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>4MB</td>
@@ -972,7 +973,7 @@
 </tr>
 <tr>
 <td>RAK_3112</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>8 MB</td>
@@ -983,7 +984,7 @@
 </tr>
 <tr>
 <td>Station_G2</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>Yes (size not declared)</td>
 <td>16MB</td>
@@ -994,7 +995,7 @@
 </tr>
 <tr>
 <td>Station_G2_logging</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>Yes (size not declared)</td>
 <td>16MB</td>
@@ -1005,7 +1006,7 @@
 </tr>
 <tr>
 <td>T_Beam_S3_Supreme_SX1262</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>8 MB</td>
 <td>8MB</td>
@@ -1016,7 +1017,7 @@
 </tr>
 <tr>
 <td>Tbeam_SX1262</td>
-<td>ESP32 / 240 MHz</td>
+<td>ESP32</td>
 <td>520 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -1027,7 +1028,7 @@
 </tr>
 <tr>
 <td>Tbeam_SX1276</td>
-<td>ESP32 / 240 MHz</td>
+<td>ESP32</td>
 <td>520 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -1038,7 +1039,7 @@
 </tr>
 <tr>
 <td>Tenstar_C3_sx1262</td>
-<td>ESP32C3 / 160 MHz</td>
+<td>ESP32C3</td>
 <td>400 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -1049,7 +1050,7 @@
 </tr>
 <tr>
 <td>Tenstar_C3_sx1268</td>
-<td>ESP32C3 / 160 MHz</td>
+<td>ESP32C3</td>
 <td>400 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -1060,7 +1061,7 @@
 </tr>
 <tr>
 <td>ThinkNode_M2</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>4MB</td>
@@ -1071,7 +1072,7 @@
 </tr>
 <tr>
 <td>ThinkNode_M5</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>4MB</td>
@@ -1082,7 +1083,7 @@
 </tr>
 <tr>
 <td>WHY2025_badge</td>
-<td>ESP32C6 / 160 MHz</td>
+<td>ESP32C6</td>
 <td>512 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -1093,7 +1094,7 @@
 </tr>
 <tr>
 <td>Xiao_C3</td>
-<td>ESP32C3 / 160 MHz</td>
+<td>ESP32C3</td>
 <td>400 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -1104,7 +1105,7 @@
 </tr>
 <tr>
 <td>Xiao_C6</td>
-<td>ESP32C6 / 160 MHz</td>
+<td>ESP32C6</td>
 <td>512 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -1115,7 +1116,7 @@
 </tr>
 <tr>
 <td>Xiao_S3_WIO</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>8 MB</td>
@@ -1133,7 +1134,7 @@
 <thead>
 <tr>
 <th>Target</th>
-<th>CPU</th>
+<th>MCU</th>
 <th>RAM</th>
 <th>PSRAM</th>
 <th>Flash</th>
@@ -1146,7 +1147,7 @@
 <tbody>
 <tr>
 <td>Heltec_v2</td>
-<td>ESP32 / 240 MHz</td>
+<td>ESP32</td>
 <td>520 KB</td>
 <td>No</td>
 <td>8 MB</td>
@@ -1157,7 +1158,7 @@
 </tr>
 <tr>
 <td>Heltec_v3</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>8 MB</td>
@@ -1168,7 +1169,7 @@
 </tr>
 <tr>
 <td>heltec_tracker_v2</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>8MB</td>
@@ -1179,7 +1180,7 @@
 </tr>
 <tr>
 <td>heltec_v4</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>2 MB</td>
 <td>16MB</td>
@@ -1190,7 +1191,7 @@
 </tr>
 <tr>
 <td>heltec_v4_tft</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>2 MB</td>
 <td>16MB</td>
@@ -1201,7 +1202,7 @@
 </tr>
 <tr>
 <td>LilyGo_TBeam_1W</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>Yes (size not declared)</td>
 <td>16MB</td>
@@ -1212,7 +1213,7 @@
 </tr>
 <tr>
 <td>LilyGo_TLora_V2_1_1_6</td>
-<td>ESP32 / 240 MHz</td>
+<td>ESP32</td>
 <td>520 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -1223,7 +1224,7 @@
 </tr>
 <tr>
 <td>nibble_screen_connect</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>4MB</td>
@@ -1234,7 +1235,7 @@
 </tr>
 <tr>
 <td>Station_G2</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>Yes (size not declared)</td>
 <td>16MB</td>
@@ -1245,7 +1246,7 @@
 </tr>
 <tr>
 <td>T_Beam_S3_Supreme_SX1262</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>8 MB</td>
 <td>8MB</td>
@@ -1256,7 +1257,7 @@
 </tr>
 <tr>
 <td>ThinkNode_M2</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>4MB</td>
@@ -1267,7 +1268,7 @@
 </tr>
 <tr>
 <td>ThinkNode_M5</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>4MB</td>
@@ -1284,7 +1285,7 @@
 <thead>
 <tr>
 <th>Target</th>
-<th>CPU</th>
+<th>MCU</th>
 <th>RAM</th>
 <th>PSRAM</th>
 <th>Flash</th>
@@ -1296,7 +1297,7 @@
 <tbody>
 <tr>
 <td>Heltec_WSL3</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>8 MB</td>
@@ -1306,7 +1307,7 @@
 </tr>
 <tr>
 <td>RAK_3112</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>8 MB</td>
@@ -1316,7 +1317,7 @@
 </tr>
 <tr>
 <td>Xiao_C3</td>
-<td>ESP32C3 / 160 MHz</td>
+<td>ESP32C3</td>
 <td>400 KB</td>
 <td>No</td>
 <td>4 MB</td>
@@ -1326,7 +1327,7 @@
 </tr>
 <tr>
 <td>Xiao_S3_WIO</td>
-<td>ESP32S3 / 240 MHz</td>
+<td>ESP32S3</td>
 <td>512 KB</td>
 <td>No</td>
 <td>8 MB</td>
