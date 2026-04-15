@@ -1416,16 +1416,16 @@ const char kWebPanelAppHtml[] PROGMEM = R"HTML(
       </section>`;
     }
     function renderRadioCard(radio) {
-      const rssiPct = pctRange(radio.last_rssi, -120, -20);
+      const rssiPct = pctRange(radio.last_rssi, -20, -120);
       const snrPct = pctRange(radio.last_snr, -20, 20);
-      const noisePct = pctRange(radio.noise_floor, -130, -60);
+      const noisePct = pctRange(radio.noise_floor, -60, -130);
       const totalAir = (radio.tx_air_secs || 0) + (radio.rx_air_secs || 0);
       const txShare = pctRatio(radio.tx_air_secs || 0, totalAir);
       return `<section class="hud-card">
         <h3>Radio</h3>
         ${renderMeter("RSSI", (radio.last_rssi ?? "--") + " dBm", rssiPct, "signal strength", false)}
         ${renderMeter("SNR", Number.isFinite(radio.last_snr) ? radio.last_snr.toFixed(1) + " dB" : "--", snrPct, "link quality", false)}
-        ${renderMeter("Noise Floor", (radio.noise_floor ?? "--") + " dBm", noisePct, "ambient RF", true)}
+        ${renderMeter("Noise Floor", (radio.noise_floor ?? "--") + " dBm", noisePct, "ambient RF", false)}
         <div class="metric-grid">
           ${renderMetric("TX Air", String(radio.tx_air_secs ?? 0) + " s")}
           ${renderMetric("RX Air", String(radio.rx_air_secs ?? 0) + " s")}
