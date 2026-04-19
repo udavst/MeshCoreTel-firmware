@@ -32,7 +32,7 @@ Only modify code for clearly scoped EastMesh features:
 
 | Change                | File                 |
 | --------------------- | -------------------- |
-| CLI / allowlist       | `docs/custom-cli.md` |
+| CLI                   | `docs/custom-cli.md` |
 | Web panel UI/behavior | `docs/web-panel.md`  |
 | Releases              | `release-notes.yml`  |
 | Flashing guidance     | `docs/releases.md`   |
@@ -124,7 +124,7 @@ uv run pio run -e T_Beam_S3_Supreme_SX1262_repeater_mqtt -t upload --upload-port
 
 If you change any of the following, update docs in the same PR when practical:
 
-- Web-panel allowlisted commands:
+- Web-panel commands:
   - update `docs/custom-cli.md`
 - Web-panel user-facing behavior, sections, controls, or troubleshooting:
   - update `docs/web-panel.md`
@@ -200,7 +200,7 @@ Do NOT (unless asked):
 
 - rename tracks
 - change tag formats
-- expand allowlist without updating docs
+- expand cli without updating docs
 - change upstream CLI semantics
 - introduce new versioning schemes
 
