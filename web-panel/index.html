@@ -1490,9 +1490,11 @@
 <li><code>mqtt.email</code>: owner contact email.</li>
 <li>MQTT server toggles: <code>eastmesh-au</code>, <code>letsmesh-eu</code>, and <code>letsmesh-us</code>.</li>
 </ul>
-<p><code>MEL</code> is used as the default dropdown option until the repeater's saved value is loaded.</p>
+<p><code>UNSET - To be configured</code> is the default for new repeater MQTT installs until a real saved value exists.</p>
 <p>Notes:</p>
 <ul>
+<li>when <code>mqtt.iata</code> is <code>UNSET</code>, the panel shows a banner at the top reminding you to set it under MQTT Settings</li>
+<li>while <code>mqtt.iata</code> is <code>UNSET</code>, enabled MQTT brokers do not attempt to connect</li>
 <li>the current MQTT server states are loaded when the page opens</li>
 <li>you can toggle each MQTT server on or off from this panel</li>
 <li>if all three servers are enabled at once, the panel shows a warning recommending two at most</li>
