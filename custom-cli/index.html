@@ -585,6 +585,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#t-beam-1w-fan-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T-Beam 1W Fan Control
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -760,6 +771,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#t-beam-1w-fan-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        T-Beam 1W Fan Control
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -896,6 +918,30 @@
 <ul>
 <li><code>get battery.reporting</code>: shows whether board battery reporting is enabled. Support is board-dependent.</li>
 <li><code>set battery.reporting on|off</code>: enables or disables battery voltage reporting on supported boards. This is currently useful for Heltec V3 boards where USB-only power can produce misleading battery readings. If your board needs this too, open an issue and support can be added board-by-board.</li>
+</ul>
+<h3 id="t-beam-1w-fan-control">T-Beam 1W Fan Control<a class="headerlink" href="#t-beam-1w-fan-control" title="Permanent link">&para;</a></h3>
+<p>These commands are only available on <code>LilyGo_TBeam_1W_*</code> repeater builds.</p>
+<ul>
+<li><code>get fan</code>: shows the current fan mode, current fan state, and the last NTC-based board temperature when available.</li>
+<li><code>set fan auto</code>: returns the fan to automatic control and persists that mode across reboot.</li>
+<li><code>set fan on</code>: forces the fan on and persists that mode across reboot.</li>
+<li><code>set fan off</code>: forces the fan off and persists that mode across reboot.</li>
+<li><code>set fan timeout &lt;Ns&gt;</code>: changes the automatic post-TX hold window in seconds and persists it across reboot, for example <code>set fan timeout 45s</code>.</li>
+</ul>
+<p>Auto mode behavior:</p>
+<ul>
+<li>forces the fan on during TX and keeps it on for the configured timeout afterward</li>
+<li>otherwise turns the fan on at <code>48C</code></li>
+<li>turns it back off at <code>42C</code></li>
+<li>keeps the fan on if the NTC reading is unavailable</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li>default repeater fan mode is <code>auto</code></li>
+<li>default post-TX timeout is <code>30s</code></li>
+<li>fan mode and timeout are stored in repeater prefs and survive reboot</li>
+<li>only <code>LilyGo_TBeam_1W_*</code> repeater builds use these persisted fan settings</li>
+<li>accepted range is <code>0s</code> to <code>600s</code></li>
 </ul>
 <h2 id="web-panel-cli-access">Web Panel CLI Access<a class="headerlink" href="#web-panel-cli-access" title="Permanent link">&para;</a></h2>
 <p>When the repeater web panel is enabled and you are authenticated, the browser CLI panel can run the same CLI commands accepted by the repeater.</p>
