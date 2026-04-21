@@ -159,6 +159,7 @@ class MyMesh : public mesh::Mesh, public CommonCLICallbacks, public WebPanelComm
   void recordStatsEvent(uint8_t type, int16_t value = 0);
   bool appendJsonEvents(char* reply, size_t reply_size, size_t& offset) const;
   bool appendJsonNeighbours(char* reply, size_t reply_size, size_t& offset) const;
+  bool appendJsonSensors(char* reply, size_t reply_size, size_t& offset) const;
   uint8_t handleLoginReq(const mesh::Identity& sender, const uint8_t* secret, uint32_t sender_timestamp, const uint8_t* data, bool is_flood);
   uint8_t handleAnonRegionsReq(const mesh::Identity& sender, uint32_t sender_timestamp, const uint8_t* data);
   uint8_t handleAnonOwnerReq(const mesh::Identity& sender, uint32_t sender_timestamp, const uint8_t* data);
@@ -254,6 +255,7 @@ public:
   void formatRadioStatsReply(char *reply, size_t reply_size) override;
   void formatPacketStatsReply(char *reply, size_t reply_size) override;
   void formatMemoryReply(char *reply, size_t reply_size) override;
+  void prepareForOTAStart() override;
   void startRegionsLoad() override;
   bool saveRegions() override;
   void onDefaultRegionChanged(const RegionEntry* r) override;
