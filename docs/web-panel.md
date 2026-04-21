@@ -165,6 +165,30 @@ Notes:
 - the refresh buttons load the current value from the repeater
 - the save buttons send the matching CLI command immediately
 
+## Ghost Node Mode
+
+Ghost Node Mode is a convenience control on `/app` for a repeater that should stay on Wi-Fi and MQTT, but should not actively behave like another nearby repeater.
+
+Typical use case:
+
+- an indoor or colocated MQTT observer where another repeater nearby is already doing the RF relay work
+- a node you want feeding MQTT, web status, and troubleshooting data without also adding extra repeat traffic or adverts
+
+When enabled, Ghost Node Mode:
+
+- turns `repeat` off
+- sets `advert.interval` to `0`
+- sets `flood.advert.interval` to `0`
+- leaves the local web panel and MQTT features running
+
+When disabled, the panel restores the prior repeat and advert settings if it still knows them from the current browser session. If not, it falls back to:
+
+- `repeat on`
+- `advert.interval 60`
+- `flood.advert.interval 12`
+
+This mode is useful when you want the device to observe and publish, not to act as an additional RF repeater. It does not create a separate firmware role; it is just a grouped web-panel shortcut for those existing settings.
+
 ## MQTT Settings
 
 This section includes:

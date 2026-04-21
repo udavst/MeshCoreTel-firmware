@@ -22,13 +22,11 @@
 class HeltecV3Board : public ESP32Board {
 private:
   bool adc_active_state;
-  bool battery_reporting_enabled;
 
 public:
   RefCountedDigitalPin periph_power;
 
   HeltecV3Board() : adc_active_state(false),
-                    battery_reporting_enabled(true),
                     periph_power(PIN_VEXT_EN) { }
 
   void begin() {
@@ -83,10 +81,6 @@ public:
   }
 
   uint16_t getBattMilliVolts() override {
-    if (!battery_reporting_enabled) {
-      return 0;
-    }
-
     analogReadResolution(10);
     digitalWrite(PIN_ADC_CTRL, adc_active_state);
 
@@ -107,19 +101,6 @@ public:
     }
 
     return mv;
-  }
-
-  bool supportsBatteryReporting() const override {
-    return true;
-  }
-
-  bool setBatteryReporting(bool enabled) override {
-    battery_reporting_enabled = enabled;
-    return true;
-  }
-
-  bool isBatteryReportingEnabled() const override {
-    return battery_reporting_enabled;
   }
 
   const char* getManufacturerName() const override {

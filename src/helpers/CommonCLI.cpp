@@ -87,8 +87,8 @@ void CommonCLI::loadPrefsInt(FILESYSTEM* fs, const char* filename) {
     file.read((uint8_t *)&_prefs->discovery_mod_timestamp, sizeof(_prefs->discovery_mod_timestamp)); // 162
     file.read((uint8_t *)&_prefs->adc_multiplier, sizeof(_prefs->adc_multiplier));                 // 166
     file.read((uint8_t *)_prefs->owner_info, sizeof(_prefs->owner_info));                          // 170
-    if (file.available() >= (int)sizeof(_prefs->battery_reporting_enabled)) {
-      file.read((uint8_t *)&_prefs->battery_reporting_enabled, sizeof(_prefs->battery_reporting_enabled)); // 290
+    if (file.available() >= (int)sizeof(_prefs->reserved_290)) {
+      file.read((uint8_t *)&_prefs->reserved_290, sizeof(_prefs->reserved_290)); // 290 reserved
     }
     if (file.available() >= (int)sizeof(_prefs->rx_boosted_gain)) {
       file.read((uint8_t *)&_prefs->rx_boosted_gain, sizeof(_prefs->rx_boosted_gain));            // 291
@@ -123,7 +123,6 @@ void CommonCLI::loadPrefsInt(FILESYSTEM* fs, const char* filename) {
     _prefs->bridge_channel = constrain(_prefs->bridge_channel, 0, 14);
 
     _prefs->powersaving_enabled = constrain(_prefs->powersaving_enabled, 0, 1);
-    _prefs->battery_reporting_enabled = constrain(_prefs->battery_reporting_enabled, 0, 1);
 
     _prefs->gps_enabled = constrain(_prefs->gps_enabled, 0, 1);
     _prefs->advert_loc_policy = constrain(_prefs->advert_loc_policy, 0, 2);
@@ -192,7 +191,7 @@ void CommonCLI::savePrefs(FILESYSTEM* fs) {
     file.write((uint8_t *)&_prefs->discovery_mod_timestamp, sizeof(_prefs->discovery_mod_timestamp)); // 162
     file.write((uint8_t *)&_prefs->adc_multiplier, sizeof(_prefs->adc_multiplier));                 // 166
     file.write((uint8_t *)_prefs->owner_info, sizeof(_prefs->owner_info));                          // 170
-    file.write((uint8_t *)&_prefs->battery_reporting_enabled, sizeof(_prefs->battery_reporting_enabled)); // 290
+    file.write((uint8_t *)&_prefs->reserved_290, sizeof(_prefs->reserved_290)); // 290 reserved
     file.write((uint8_t *)&_prefs->rx_boosted_gain, sizeof(_prefs->rx_boosted_gain));              // 291
     file.write((uint8_t *)&_prefs->fan_mode, sizeof(_prefs->fan_mode));                            // 292
     file.write((uint8_t *)&_prefs->fan_timeout_secs, sizeof(_prefs->fan_timeout_secs));            // 293

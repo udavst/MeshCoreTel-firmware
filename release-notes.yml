@@ -418,6 +418,9 @@ releases:
       - type: fixed
         area: board-support
         text: "Reduced Heltec V3 battery-sense activity while MQTT and web features are active, while still keeping explicit status and telemetry requests on a fresh reading path."
+      - type: changed
+        area: board-support
+        text: "Removed the obsolete battery reporting toggle path and its stale CLI documentation now that repeater battery sampling is handled correctly without a board-level reporting disable switch."
       - type: docs
         area: docs
         text: "Updated the custom CLI docs to note that repeater MQTT background battery sampling is now rate-limited while explicit status and telemetry requests still refresh immediately."

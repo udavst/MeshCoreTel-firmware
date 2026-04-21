@@ -1240,7 +1240,7 @@ MyMesh::MyMesh(mesh::MainBoard &board, mesh::Radio &radio, mesh::MillisecondCloc
   _prefs.advert_loc_policy = ADVERT_LOC_PREFS;
 
   _prefs.adc_multiplier = 0.0f; // 0.0f means use default board multiplier
-  _prefs.battery_reporting_enabled = 1;
+  _prefs.reserved_290 = 0;
   _prefs.fan_mode = 0; // auto
   _prefs.fan_timeout_secs = 30;
 
@@ -1347,7 +1347,6 @@ void MyMesh::begin(FILESYSTEM *fs, ArchiveStorage* archive) {
   updateFloodAdvertTimer();
 
   board.setAdcMultiplier(_prefs.adc_multiplier);
-  board.setBatteryReporting(_prefs.battery_reporting_enabled);
 #if defined(TBEAM_1W)
   auto& tbeam1w_board = static_cast<TBeam1WBoard&>(board);
   tbeam1w_board.setFanPostTxHoldMs(static_cast<uint32_t>(_prefs.fan_timeout_secs) * 1000UL);
@@ -1374,13 +1373,6 @@ void MyMesh::sendFloodScoped(const TransportKey& scope, mesh::Packet* pkt, uint3
 
 uint16_t MyMesh::getBatteryMilliVolts(bool force_refresh) {
   constexpr unsigned long kBatterySampleIntervalMs = 60000UL;
-
-  if (board.supportsBatteryReporting() && !board.isBatteryReportingEnabled()) {
-    _battery_sample_valid = true;
-    _battery_mv_cache = 0;
-    next_battery_sample_ms = 0;
-    return 0;
-  }
 
   if (force_refresh || !_battery_sample_valid || next_battery_sample_ms == 0 || millisHasNowPassed(next_battery_sample_ms)) {
     _battery_mv_cache = board.getBattMilliVolts();
