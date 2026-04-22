@@ -315,6 +315,8 @@ On mobile:
 3. The local HTTP redirect listener on port `80` is released so OTA can take over that port.
 4. Continue with your normal OTA workflow.
 
+If an older build sends you through a strange redirect after `start ota`, use the web `Start OTA` button to begin the upgrade anyway. The `repeater-mqtt-eastmesh-v1.3.11` release fixes that redirect issue.
+
 ### Use Historical Stats
 
 1. Enable stats if needed with `set web.stats on`.
