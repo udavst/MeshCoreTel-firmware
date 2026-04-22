@@ -573,6 +573,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Info
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ghost-node-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1106,6 +1117,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Info
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ghost-node-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1473,7 +1495,7 @@
 <li>Wi-Fi</li>
 <li>MQTT</li>
 </ul>
-<p>These are useful for quick checks without typing into the CLI field.</p>
+<p>These are useful for quick checks without typing into the CLI field. The MQTT quick actions include <code>mqtt.status</code>, <code>mqtt.client_version</code>, <code>mqtt.iata</code>, <code>mqtt.owner</code>, and <code>mqtt.email</code>.</p>
 <h2 id="run-cli-command">Run CLI Command<a class="headerlink" href="#run-cli-command" title="Permanent link">&para;</a></h2>
 <p>This is a small terminal for the repeater CLI.</p>
 <ul>
@@ -1488,6 +1510,7 @@
 <p>This section includes:</p>
 <ul>
 <li>Device Name</li>
+<li>Clock UTC</li>
 <li>Latitude</li>
 <li>Longitude</li>
 <li>Guest Password</li>
@@ -1503,6 +1526,13 @@
 <li>changing the private key requires a reboot to apply</li>
 <li>the refresh buttons load the current value from the repeater</li>
 <li>the save buttons send the matching CLI command immediately</li>
+</ul>
+<h2 id="info">Info<a class="headerlink" href="#info" title="Permanent link">&para;</a></h2>
+<p>This section shows:</p>
+<ul>
+<li><code>Version</code>: firmware version with build date</li>
+<li><code>Client Version</code>: MQTT client version string</li>
+<li><code>Public Key</code></li>
 </ul>
 <h2 id="ghost-node-mode">Ghost Node Mode<a class="headerlink" href="#ghost-node-mode" title="Permanent link">&para;</a></h2>
 <p>Ghost Node Mode is a convenience control on <code>/app</code> for a repeater that should stay on Wi-Fi and MQTT, but should not actively behave like another nearby repeater.</p>
@@ -1554,6 +1584,7 @@
 </ul>
 <p>For boards that expose extra telemetry, the optional <code>Environment</code> summary card can show current values such as GPS fix state, latitude, longitude, GPS altitude, voltage, sensor temperature, humidity, barometer, pressure-derived altitude, and MCU temperature.</p>
 <p>Metrics with no current value are hidden rather than showing placeholder rows, so the cards vary by board and by current sensor state.</p>
+<p>The <code>Core</code> battery meter prefers a board-reported battery percentage when the target exposes one. Otherwise it scales the displayed percentage from the board's configured battery voltage range rather than assuming a fixed single-cell <code>3000-4200 mV</code> pack.</p>
 <p>The trend graphs load sequentially rather than as one large payload:</p>
 <ol>
 <li>summary/status</li>
@@ -1648,7 +1679,7 @@
 <ol>
 <li>Press <code>Start OTA</code>.</li>
 <li>Confirm the action.</li>
-<li>The local repeater web panel is suspended until reboot so OTA can take over HTTP on port <code>80</code>.</li>
+<li>The local HTTP redirect listener on port <code>80</code> is released so OTA can take over that port.</li>
 <li>Continue with your normal OTA workflow.</li>
 </ol>
 <h3 id="use-historical-stats">Use Historical Stats<a class="headerlink" href="#use-historical-stats" title="Permanent link">&para;</a></h3>

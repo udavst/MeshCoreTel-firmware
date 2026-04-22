@@ -1105,6 +1105,7 @@
 <li>this summary view is also what the repo's web panel requests first before loading trend series</li>
 <li>if <code>web.stats</code> is disabled, the endpoint returns <code>503 Service Unavailable</code></li>
 <li>supported boards may also include an optional <code>sensors</code> object in the summary payload for current GPS and environmental telemetry</li>
+<li>the <code>core</code> object includes raw <code>battery_mv</code>, board-reported <code>battery_pct</code> when available, a UI-ready <code>battery_display_pct</code>, and board-specific <code>battery_min_mv</code> / <code>battery_max_mv</code> range hints used by <code>/stats</code> when the board does not expose its own battery percentage</li>
 </ul>
 <h3 id="get-apistatsseriesname"><code>GET /api/stats?series=&lt;name&gt;</code><a class="headerlink" href="#get-apistatsseriesname" title="Permanent link">&para;</a></h3>
 <p>Fetch one trend series.</p>
