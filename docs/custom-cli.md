@@ -86,8 +86,7 @@ Legacy dotted aliases are also accepted:
 
 ### Board Battery Reporting
 
-- `get battery.reporting`: shows whether board battery reporting is enabled. Support is board-dependent.
-- `set battery.reporting on|off`: enables or disables battery voltage reporting on supported boards. This is currently useful for Heltec V3 boards where USB-only power can produce misleading battery readings. If your board needs this too, open an issue and support can be added board-by-board.
+- On repeater MQTT builds, background battery sampling used for MQTT/status history is rate-limited to about once per minute. Explicit status and telemetry requests still refresh the reading immediately.
 
 ### T-Beam 1W Fan Control
 
