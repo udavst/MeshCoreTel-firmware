@@ -573,6 +573,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ghost-node-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ghost Node Mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#mqtt-settings" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1095,6 +1106,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ghost-node-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ghost Node Mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#mqtt-settings" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1482,6 +1504,27 @@
 <li>the refresh buttons load the current value from the repeater</li>
 <li>the save buttons send the matching CLI command immediately</li>
 </ul>
+<h2 id="ghost-node-mode">Ghost Node Mode<a class="headerlink" href="#ghost-node-mode" title="Permanent link">&para;</a></h2>
+<p>Ghost Node Mode is a convenience control on <code>/app</code> for a repeater that should stay on Wi-Fi and MQTT, but should not actively behave like another nearby repeater.</p>
+<p>Typical use case:</p>
+<ul>
+<li>an indoor or colocated MQTT observer where another repeater nearby is already doing the RF relay work</li>
+<li>a node you want feeding MQTT, web status, and troubleshooting data without also adding extra repeat traffic or adverts</li>
+</ul>
+<p>When enabled, Ghost Node Mode:</p>
+<ul>
+<li>turns <code>repeat</code> off</li>
+<li>sets <code>advert.interval</code> to <code>0</code></li>
+<li>sets <code>flood.advert.interval</code> to <code>0</code></li>
+<li>leaves the local web panel and MQTT features running</li>
+</ul>
+<p>When disabled, the panel restores the prior repeat and advert settings if it still knows them from the current browser session. If not, it falls back to:</p>
+<ul>
+<li><code>repeat on</code></li>
+<li><code>advert.interval 60</code></li>
+<li><code>flood.advert.interval 12</code></li>
+</ul>
+<p>This mode is useful when you want the device to observe and publish, not to act as an additional RF repeater. It does not create a separate firmware role; it is just a grouped web-panel shortcut for those existing settings.</p>
 <h2 id="mqtt-settings">MQTT Settings<a class="headerlink" href="#mqtt-settings" title="Permanent link">&para;</a></h2>
 <p>This section includes:</p>
 <ul>

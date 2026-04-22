@@ -916,8 +916,7 @@
 </blockquote>
 <h3 id="board-battery-reporting">Board Battery Reporting<a class="headerlink" href="#board-battery-reporting" title="Permanent link">&para;</a></h3>
 <ul>
-<li><code>get battery.reporting</code>: shows whether board battery reporting is enabled. Support is board-dependent.</li>
-<li><code>set battery.reporting on|off</code>: enables or disables battery voltage reporting on supported boards. This is currently useful for Heltec V3 boards where USB-only power can produce misleading battery readings. If your board needs this too, open an issue and support can be added board-by-board.</li>
+<li>On repeater MQTT builds, background battery sampling used for MQTT/status history is rate-limited to about once per minute. Explicit status and telemetry requests still refresh the reading immediately.</li>
 </ul>
 <h3 id="t-beam-1w-fan-control">T-Beam 1W Fan Control<a class="headerlink" href="#t-beam-1w-fan-control" title="Permanent link">&para;</a></h3>
 <p>These commands are only available on <code>LilyGo_TBeam_1W_*</code> repeater builds.</p>
