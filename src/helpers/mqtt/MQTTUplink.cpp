@@ -288,8 +288,8 @@ void MQTTUplink::refreshBrokerIdentity(BrokerState& broker) {
 }
 
 void MQTTUplink::refreshBrokerState(BrokerState& broker) {
-  char safe_name[40];
-  makeSafeToken(board.getManufacturerName(), safe_name, sizeof(safe_name));
+  char model[48];
+  escapeJsonString(board.getManufacturerName(), model, sizeof(model));
   char origin[80];
   const char* node_name = (_node_name != nullptr && _node_name[0] != 0) ? _node_name : _device_id;
   escapeJsonString(node_name, origin, sizeof(origin));
@@ -304,7 +304,7 @@ void MQTTUplink::refreshBrokerState(BrokerState& broker) {
   snprintf(broker.offline_payload, sizeof(broker.offline_payload),
            "{\"status\":\"offline\",\"timestamp\":\"%s\",\"origin\":\"%s\",\"origin_id\":\"%s\",\"model\":\"%s\","
            "\"firmware_version\":\"%s\",\"radio\":\"%s\",\"client_version\":\"%s\"}",
-           ts, origin, _device_id, safe_name, FIRMWARE_VERSION, radio_info, client_version);
+           ts, origin, _device_id, model, FIRMWARE_VERSION, radio_info, client_version);
 }
 
 bool MQTTUplink::refreshToken(BrokerState& broker) {
@@ -411,7 +411,7 @@ int MQTTUplink::buildStatusJson(char* buffer, size_t buffer_size, bool online) c
   char ts[32];
   formatIsoTimestamp(time(nullptr), ts, sizeof(ts));
   char model[48];
-  makeSafeToken(board.getManufacturerName(), model, sizeof(model));
+  escapeJsonString(board.getManufacturerName(), model, sizeof(model));
   char origin[80];
   const char* node_name = (_node_name != nullptr && _node_name[0] != 0) ? _node_name : _device_id;
   escapeJsonString(node_name, origin, sizeof(origin));
