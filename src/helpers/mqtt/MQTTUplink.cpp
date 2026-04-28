@@ -17,15 +17,15 @@
 #include <time.h>
 
 #ifndef FIRMWARE_VERSION
-  #define FIRMWARE_VERSION "v1.15.0 (VBart MeshCoreTel)"
+  #define FIRMWARE_VERSION "v1.15.0-vbart-meshcoretel"
 #endif
 
 #ifndef FIRMWARE_BUILD_DATE
-  #define FIRMWARE_BUILD_DATE "27 Apr 2026"
+  #define FIRMWARE_BUILD_DATE "Unspecified"
 #endif
 
 #ifndef CLIENT_VERSION
-  #define CLIENT_VERSION "meshcoretel-repeater-mqtt"
+  #define CLIENT_VERSION "vbart-meshcoretel"
 #endif
 
 #ifndef MQTT_DEBUG
